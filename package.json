@@ -1,0 +1,24 @@
+{
+  "name": "nodeschool",
+  "version": "1.0.0",
+  "description": "Repository for working on nodeschool workshoppers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/villiamrose/nodeschool.git"
+  },
+  "author": "villiamrose",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/villiamrose/nodeschool/issues"
+  },
+  "homepage": "https://github.com/villiamrose/nodeschool#readme",
+  "devDependencies": {
+    "eslint": "^8.45.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.27.5"
+  }
+}
