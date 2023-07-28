@@ -11,3 +11,4 @@ rules:
   no-plusplus: off
   no-shadow: off
   no-unused-vars: off
+  arrow-body-style: off
