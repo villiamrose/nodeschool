@@ -13,3 +13,4 @@ rules:
   no-unused-vars: off
   arrow-body-style: off
   prefer-rest-params: off
+  no-param-reassign: off
