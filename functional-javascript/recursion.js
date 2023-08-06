@@ -1,10 +1,32 @@
-const reduce = (arr, fn, init) => {
-  if (!arr.length) {
-    let newVal = init;
-    newVal = fn(arr[0]);
-    return reduce(arr.shift(), fn, newVal);
+const getDependencies = (tree) => {
+  let dependencyList = [];
+
+  if (!tree || !tree.dependencies) {
+    return dependencyList;
   }
-  return init;
+
+  console.log(`here${JSON.stringify(tree)}`);
+
+  const { dependencies } = tree;
+  const keys = Object.keys(dependencies);
+
+  keys.forEach((key) => {
+    const dependencyStr = `${key}@${dependencies[key].version}`;
+    dependencyList.push(dependencyStr);
+    if (dependencies[key].dependencies) {
+      dependencyList = dependencyList.concat(getDependencies(dependencies[key]));
+    }
+  });
+
+  // remove duplicates
+  dependencyList = dependencyList.reduce((prev, curr) => {
+    if (!prev.includes(curr)) prev.push(curr);
+    return prev;
+  }, []);
+
+  dependencyList.sort((a, b) => (a > b ? 0 : -1));
+
+  return dependencyList;
 };
 
-module.exports = reduce;
+module.exports = getDependencies;
