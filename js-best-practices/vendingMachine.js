@@ -37,7 +37,7 @@ module.exports = {
 
   insertCoin(coinType) {
     const value = this.getAmount(coinType);
-    this.increaseBalance(value);
+    balanceManager.increaseBalance(value);
   },
 
   isValidAmount(amount) {
@@ -48,14 +48,14 @@ module.exports = {
   },
 
   releaseChange() {
-    const currentBalance = this.getBalance();
-    this.decreaseBalance(currentBalance);
+    const currentBalance = balanceManager.getBalance();
+    balanceManager.decreaseBalance(currentBalance);
     return this.convertToChange(currentBalance);
   },
 
   vendProduct(productId) {
     const product = this.getProduct(productId);
-    this.decreaseBalance(product.price);
+    balanceManager.decreaseBalance(product.price);
     return product;
   },
 
