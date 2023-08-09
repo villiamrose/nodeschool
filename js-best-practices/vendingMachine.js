@@ -2,8 +2,6 @@ const balanceManager = require('./balanceManager');
 const changeHandler = require('./changeHandler');
 const productInventory = require('./productInventory');
 
-let balance = 0;
-
 const products = [
   {
     name: 'Skittles',
@@ -13,29 +11,6 @@ const products = [
 ];
 
 module.exports = {
-  canAfford(amount) {
-    if (!this.isValidAmount(amount)) {
-      errorMessage = 'Invalid Input';
-    }
-    if (errorMessage) {
-      throw new Error(errorMessage);
-    }
-    return amount <= balance;
-  },
-
-  decreaseBalance(amount) {
-    // This method decreases the balance of the vending machine. If the balance amount is not
-    // enough to cover the purchase, the method throws an error.
-    let errorMessage;
-    if (!this.canAfford(amount)) {
-      errorMessage = 'Insufficient balance';
-    }
-    if (errorMessage) {
-      throw new Error(errorMessage);
-    }
-    balance -= amount;
-  },
-
   getAmount(coinType) {
     // COINS:
     // [p]enny
@@ -51,10 +26,6 @@ module.exports = {
     }
   },
 
-  getBalance() {
-    return balance;
-  },
-
   getProducts() {
     return products;
   },
@@ -62,10 +33,6 @@ module.exports = {
   getProduct(productId) {
     const product = products.find((p) => { return p.id === productId; });
     return product;
-  },
-
-  increaseBalance(amount) {
-    balance += amount;
   },
 
   insertCoin(coinType) {
