@@ -50,8 +50,8 @@ module.exports = {
         changes.push(max.code);
       }
       const remaining = cents - (max.value * max.count);
-      changes = this.convertToChange(remaining).concat(changes);
+      changes = changes.concat(this.convertToChange(remaining));
     }
-    return changes.sort();
+    return changes;
   },
 };
