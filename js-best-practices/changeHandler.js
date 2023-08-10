@@ -31,4 +31,27 @@ module.exports = {
     if (!coin) throw new Error(`Unrecognized coin ${coinType}`);
     return coin.value;
   },
+  convertToChange(cents) {
+    let changes = [];
+    const counts = coins.reduce((arr, coin) => {
+      const obj = {
+        code: coin.code,
+        value: coin.value,
+        count: Math.floor(cents / coin.value),
+      };
+      if (obj.count > 0) arr.push(obj);
+      return arr;
+    }, []);
+
+    if (counts.length) {
+      const lastIdx = counts.length - 1;
+      const max = counts[lastIdx];
+      for (let i = 0; i < max.count; i++) {
+        changes.push(max.code);
+      }
+      const remaining = cents - (max.value * max.count);
+      changes = this.convertToChange(remaining).concat(changes);
+    }
+    return changes.sort();
+  },
 };
