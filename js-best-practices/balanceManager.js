@@ -1,6 +1,12 @@
 let balance = 0;
 
 module.exports = {
+  isValidAmount(amount) {
+    if (amount === null || amount === undefined) {
+      return false;
+    }
+    return true;
+  },
   canAfford(amount) {
     let errorMessage;
 
@@ -14,8 +20,6 @@ module.exports = {
   },
 
   decreaseBalance(amount) {
-    // This method decreases the balance of the vending machine. If the balance amount is not
-    // enough to cover the purchase, the method throws an error.
     let errorMessage;
     if (!this.canAfford(amount)) {
       errorMessage = 'Insufficient balance';
