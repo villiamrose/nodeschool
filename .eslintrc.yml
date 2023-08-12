@@ -16,3 +16,4 @@ rules:
   no-param-reassign: off
   no-var: off
   no-undef: off
+  no-dynamic-require: off
